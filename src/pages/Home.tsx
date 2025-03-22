@@ -1,5 +1,5 @@
-import nwuBuilding from '../src/assets/nwu_building.jfif';
-import nwuLogo from '../src/assets/nwu_logo.png';
+import nwuBuilding from '../assets/nwu_building.jfif';
+import nwuLogo from '../assets/nwu_logo.png';
 export default function Home() {
     return (
         <>
