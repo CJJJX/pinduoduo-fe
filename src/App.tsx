@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Flex, Layout, Menu, Affix, Modal } from "antd";
+import { Layout, Menu, Affix, Modal } from "antd";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import PublishedJobs from "./pages/PublishedJobs";
 import AppliedJobs from "./pages/AppliedJobs";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserCenter from "./pages/userCenter/UserCenter";
 import { signUp, getUserInfo, logout } from "./api/user";
