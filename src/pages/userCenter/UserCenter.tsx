@@ -1,7 +1,7 @@
 import { Flex, Layout,Menu,Form,Table,Space,Modal,Button,Input,message, Empty } from "antd";
 import { useState,useEffect } from "react";
 import MyInfo from './common/MyInfo'; // 公共侧: 个人信息
-import EditPassword from "./common/EditPassWord"; // 公共侧: 修改密码
+import EditPassword from "./common/EditPassword"; // 公共侧: 修改密码
 import MyResumeList from "./user/MyResumeList";   // 用户侧:我的简历信息
 import MySentList from './user/MySentList'; // 用户侧:我的投递记录
 import MyAppliedList from "./user/MyAppliedList"; // 用户侧:我的求职信息
