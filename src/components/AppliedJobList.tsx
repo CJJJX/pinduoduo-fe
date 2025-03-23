@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import {Flex,Input,Button,Table,Pagination } from 'antd'
+import {Input,Button,Table,Form } from 'antd'
 import {getAppliesList} from '../api/apply'
 import {handleTime} from '../utils/time'
-import { Routes, Route,useNavigate,useLocation,useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // 求职信息表格列
 const appliedJobsCols = [
     {
@@ -28,11 +28,28 @@ export default function AppliedJobList({ onIdChange }) {
     const [curPage,setCurPage] = useState(1)
     const [pageSize,setPageSize] = useState(10)
     const [total,setTotal] = useState(0)
-    const handleItemClick = (id) => {
+    const [form] = Form.useForm()
+    const handleItemClick = (id: number) => {
          onIdChange(id)
     }
     const onPageChange = (pageNum: number) => {
         setCurPage(pageNum)
+    }
+    const handleSearch = async () => {
+        const values = await form.validateFields();
+        console.log(values,'搜索框的values..')
+        getAppliesList({currentPage: curPage,...values}).then((res: any) => {
+            if(res.status) {
+            console.log(res.data.Applys,'111')
+            const { paginations } = res.data
+            let list = handleTime(res.data.Applys)
+            //setCurPage(paginations.currentPage)
+            setPageSize(paginations.pageSize)
+            setTotal(paginations.total)
+            setAppliedList(list)
+        }
+        }
+        )
     } 
     useEffect(() => {
         // if(id) {
@@ -40,7 +57,7 @@ export default function AppliedJobList({ onIdChange }) {
         //     return
         // }
         // setAppliedId(0) 
-        getAppliesList({currentPage: curPage}).then((res) => {
+        getAppliesList({currentPage: curPage}).then((res: any) => {
             if(res.status) {
             console.log(res.data.Applys,'111')
             const { paginations } = res.data
@@ -56,17 +73,19 @@ export default function AppliedJobList({ onIdChange }) {
     return (
         <>
          <div style={{display: 'flex',flexDirection: 'column', width:"100%"}}>
-            <Flex justify='center' align='center'>
-                <Input></Input>
-                <Button style={{}} >搜索</Button>
-            </Flex>
-             
+         <Form form={form} layout='inline'>
+         <Form.Item label="求职标题" name="title">
+                <Input/>
+            </Form.Item>
+         <Button onClick={handleSearch}>搜索</Button>
+             <Button onClick={() => form.resetFields()}>重置</Button>    
+            </Form>
               <Table dataSource={appliedList} columns={appliedJobsCols} 
              rowKey={(record) => record.id}
              style={{flex: '1'}}
              onRow={(record) => {
                 return {
-                  onClick: (event) => {
+                  onClick: () => {
                     
                     const id = record.id
                     console.log(id,'nn')
