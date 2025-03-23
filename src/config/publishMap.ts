@@ -1,5 +1,24 @@
+  type CollegeMap = {
+    [key: number]: string;
+  };
+  type CollegeMapReverse = {
+    [key: string] : number;
+  }
+  type JobTypeMap = {
+    [key: number]: string;
+  };
+  type JobTypeMapReverse = {
+    [key: string] : number;
+  }
+  type DegreeMap = {
+    [key: number]: string;
+  };
+  type DegreeMapReverse = {
+    [key: string] : number;
+  }
+
 // 招聘信息发布源自的学院
-export const collegeMap = {
+export const collegeMap: CollegeMap = {
     0: '不限',
     1: '文学院',
     2: '历史学院',
@@ -24,7 +43,7 @@ export const collegeMap = {
     21: '化工学院',
     22: '食品科学与工程学院'
 }
-export const collegeMapReverse = {
+export const collegeMapReverse: CollegeMapReverse = {
     '不限': 0,
     '文学院': 1,
     '历史学院': 2,
@@ -50,7 +69,7 @@ export const collegeMapReverse = {
     '食品科学与工程学院': 22
 }
 // 工作的类型
-export const jobTypeMap = {
+export const jobTypeMap: JobTypeMap = {
     0: '综合类',
     1: '辅导员类',
     2: '教师类',
@@ -59,7 +78,7 @@ export const jobTypeMap = {
     5: '教辅类',
     6: '管理类'
 }
-export const jobTypeMapReverse = {
+export const jobTypeMapReverse: JobTypeMapReverse = {
     '综合类': 0,
     '辅导员类': 1,
     '教师类': 2,
@@ -69,13 +88,13 @@ export const jobTypeMapReverse = {
     '管理类': 6
 }
 // 要求最低学历
-export const degreeMap = {
+export const degreeMap: DegreeMap = {
     0: '不限',
     1: '本科',
     2: '硕士',
     3: '博士'
 }
-export const degreeMapReverse = {
+export const degreeMapReverse: DegreeMapReverse = {
     '不限': 0,
     '本科': 1,
     '硕士': 2,
