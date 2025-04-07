@@ -61,7 +61,7 @@ export default function SignUp() {
       <Select
       placeholder="角色"
       prefix={<LinuxOutlined />}>
-      <Option value="0">管理员</Option>
+      <Option value="0">高校HR</Option>
         <Option value="1">求职者</Option>
       </Select>
       </Form.Item>
