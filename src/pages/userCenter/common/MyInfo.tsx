@@ -11,7 +11,7 @@ const sexOptions = [
   {label: "女",value: 1},
 ]
 const tipsMap = {
-  0: "管理员需要上传工作证等证明材料",
+  0: "高校HR需要上传工作证等证明材料",
   1: "求职者需要上传毕业证书，学位证书等证明材料"
 }
 export default function MyInfo() {
