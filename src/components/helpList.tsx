@@ -24,7 +24,7 @@ const helpList = [
   {
     question: "意向岗位类型分为哪些",
     answer: "意向岗位类型分为`综合类、辅导员类、教师类、后勤（服务）类、科研类、教辅类、管理类`",
-  }
+  },
 ];
 
 export default function HelpList({ isShow, handleClose }) {
