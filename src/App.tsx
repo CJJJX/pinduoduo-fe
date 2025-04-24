@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserCenter from "./pages/userCenter/UserCenter";
 import ChatList from "./components/ChatList";
-import HelpList from "./components/HelpList";
+import HelpDocumentList from "./components/HelpDocumentList";
 import { getUserInfo, logout } from "./api/user";
 const { Header, Sider, Content } = Layout;
 
@@ -224,7 +224,7 @@ function App() {
       ></FloatButton>
       } 
       </FloatButton.Group>
-      <HelpList isShow={showHelpModal} handleClose={handleCloseHelp}></HelpList>
+      <HelpDocumentList isShow={showHelpModal} handleClose={handleCloseHelp}></HelpDocumentList>
       <ChatList isShow={showChatModal} handleClose={handleCloseChat}></ChatList>
       
     </>

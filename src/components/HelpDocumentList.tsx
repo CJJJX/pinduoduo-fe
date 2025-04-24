@@ -27,7 +27,7 @@ const helpList = [
   },
 ];
 
-export default function HelpList({ isShow, handleClose }) {
+export default function HelpDocumentList({ isShow, handleClose }) {
   return (
     <Drawer
       open={isShow}
