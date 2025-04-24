@@ -8,8 +8,8 @@ import AppliedJobs from "./pages/AppliedJobs";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserCenter from "./pages/userCenter/UserCenter";
-import ChatList from "./components/chatList";
-import HelpList from "./components/helpList";
+import ChatList from "./components/ChatList";
+import HelpList from "./components/HelpList";
 import { getUserInfo, logout } from "./api/user";
 const { Header, Sider, Content } = Layout;
 
