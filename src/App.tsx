@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Layout, Menu, Affix, Modal } from "antd";
+import {OpenAIOutlined,ReadOutlined} from "@ant-design/icons"
+import { Layout, Menu, Affix, Modal,FloatButton } from "antd";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Home from "./pages/Home";
 import PublishedJobs from "./pages/PublishedJobs";
@@ -7,8 +8,10 @@ import AppliedJobs from "./pages/AppliedJobs";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserCenter from "./pages/userCenter/UserCenter";
-import { signUp, getUserInfo, logout } from "./api/user";
-const { Header, Footer, Sider, Content } = Layout;
+import ChatList from "./components/chatList";
+import HelpList from "./components/helpList";
+import { getUserInfo, logout } from "./api/user";
+const { Header, Sider, Content } = Layout;
 
 const layoutStyle = {
   borderRadius: 8,
@@ -56,6 +59,8 @@ function App() {
   const [navItems, setNavItems] = useState<object[]>(navItemsLogin);
   const [hasLogin, setHasLogin] = useState<boolean>(false); // 登录态存储至localStorage，以免用户刷新后状态失效
   const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
+  const [showChatModal,setShowChatModal] = useState<boolean>(false);
+  const [showHelpModal,setShowHelpModal] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
   const handleClick = async (item: MenuItem) => {
@@ -99,10 +104,19 @@ function App() {
       }
     });
   };
+  const handleCloseChat = () => {
+    setShowChatModal(false)
+  }
+  const handleCloseHelp = () => {
+    setShowHelpModal(false)
+  }
   useEffect(() => {
-    getUserInfo().then((res) => {
+    getUserInfo().then((res:any) => {
       console.log(res, "res---");
       if (res.status === true) {
+        // 将account 和 role 挂载在window对象上
+          window.account = res?.data.account
+          window.role = res?.data.role
         setHasLogin(true);
       } else setHasLogin(false);
     });
@@ -196,6 +210,23 @@ function App() {
         cancelText="取消"
         okText="确认"
       ></Modal>
+      <FloatButton.Group shape="square">
+        <FloatButton description="帮助"
+      icon={<ReadOutlined/>}
+      onClick={()=> {setShowHelpModal(true)}
+    }
+      />
+      {
+        window?.account && <FloatButton description="对话"
+      icon={<OpenAIOutlined />}
+      onClick={()=> {setShowChatModal(true)}
+    }
+      ></FloatButton>
+      } 
+      </FloatButton.Group>
+      <HelpList isShow={showHelpModal} handleClose={handleCloseHelp}></HelpList>
+      <ChatList isShow={showChatModal} handleClose={handleCloseChat}></ChatList>
+      
     </>
   );
 }
